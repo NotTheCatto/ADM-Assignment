@@ -7,5 +7,6 @@ CREATE TABLE Address(
   PostalCode 	NUMBER(5)     NOT NULL,
   State 	VARCHAR2(14)  NOT NULL,
   Country 	VARCHAR(9,2)  NOT NULL,
+
   PRIMARY KEY (AddressID)
 );
