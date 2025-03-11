@@ -8,7 +8,6 @@ CREATE TABLE Book(
   ISBN  	  VARCHAR2(20)  NOT NULL,
   PublicationYear NUMBER(4)     NOT NULL,
   BookDescription VARCHAR2(700) NOT NULL,
-
   PRIMARY KEY (BookID),
   FOREIGN KEY (PublisherID) REFERENCES Publisher (PublisherID),
   FOREIGN KEY (LanguageCode) REFERENCES LanguageCode (LanguageCode)
