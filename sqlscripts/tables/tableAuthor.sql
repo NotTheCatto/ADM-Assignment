@@ -6,6 +6,5 @@ CREATE TABLE Author(
   AuthorLastName    VARCHAR2(20)  NOT NULL,
   AuthorGender      CHAR(1)       NOT NULL,
   Biography         VARCHAR2(700) NOT NULL,
-
   PRIMARY KEY (AddressID)
 );
