@@ -10,6 +10,6 @@ CREATE TABLE Loan(
   ReturnDate          DATE,
   PRIMARY KEY (LoanID),
   FOREIGN KEY (BorrowerID) REFERENCES Borrower (BorrowerID),
-  FOREIGN KEY (BookCopyID) REFERENCES BookCopy (BookCopyID)
-  FOREIGN KEY (ProcessedByStaffID) REFERENCES Loan (ProcessedByStaffID)
+  FOREIGN KEY (BookCopyID) REFERENCES BookCopy (BookCopyID),
+  FOREIGN KEY (ProcessedByStaffID) REFERENCES Staff (StaffID)
 );

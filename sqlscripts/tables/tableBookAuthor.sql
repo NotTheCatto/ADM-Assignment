@@ -1,4 +1,4 @@
-eROMPT Creating table BookAuthor
+PROMPT Creating table BookAuthor
 
 CREATE TABLE BookAuthor(
   BookID	  NUMBER(4)     NOT NULL,

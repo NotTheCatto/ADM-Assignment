@@ -1,6 +1,6 @@
 PROMPT Creating table PerformanceReview
 
-CREATE TABLE PerformanceReview(
+CREATE TABLE StaffPerformanceReview(
   ReviewID	NUMBER(4)	NOT NULL,
   StaffID	NUMBER(4)	NOT NULL,
   ReviewerID	NUMBER(4)	NOT NULL,

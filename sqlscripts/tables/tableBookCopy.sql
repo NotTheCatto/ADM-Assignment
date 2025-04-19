@@ -9,5 +9,5 @@ CREATE TABLE BookCopy(
   PRIMARY KEY (BookCopyID),
   FOREIGN KEY (BookID) REFERENCES Book (BookID),
   FOREIGN KEY (LibraryBranchID) REFERENCES LibraryBranch (LibraryBranchID),
-  FOREIGN KEY (StatusCode) REFERENCES StatusCode (StatusCode),
+  FOREIGN KEY (StatusCode) REFERENCES StatusCode (StatusCode)
 );

@@ -1,6 +1,6 @@
 PROMPT Creating table ShiftSchedule
 
-CREATE TABLE ShiftSchedule(
+CREATE TABLE StaffShiftSchedule(
   ShiftID	  NUMBER(4)	NOT NULL,
   StaffID	  NUMBER(4)	NOT NULL,
   LibraryBranchID NUMBER(4)	NOT NULL,

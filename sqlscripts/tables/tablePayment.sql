@@ -7,5 +7,5 @@ CREATE TABLE Payment(
   PaymentMethod   VARCHAR2(20)  NOT NULL,
   PaymentAmount   NUMBER(8,2)	NOT NULL,
   PRIMARY KEY (PaymentID),
-  FOREIGN KEY (InvoiceID) REFERENCES Invoice (InvoiceID),
+  FOREIGN KEY (InvoiceID) REFERENCES Invoice (InvoiceID)
 );
