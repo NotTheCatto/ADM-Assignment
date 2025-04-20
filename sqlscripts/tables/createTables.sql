@@ -1,4 +1,5 @@
 DROP TABLE Payment CASCADE CONSTRAINTS;
+DROP TABLE PaymentMethod CASCADE CONSTRAINTS;
 DROP TABLE Invoice CASCADE CONSTRAINTS;
 DROP TABLE Fine CASCADE CONSTRAINTS;
 DROP TABLE Loan CASCADE CONSTRAINTS;
@@ -46,4 +47,5 @@ DROP TABLE Contact CASCADE CONSTRAINTS;
 @@ tableLoan.sql;
 @@ tableFine.sql;
 @@ tableInvoice.sql;
+@@ tablePaymentMethod.sql;
 @@ tablePayment.sql;

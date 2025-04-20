@@ -1,15 +1,16 @@
-PROMPT Creating table ShiftSchedule
+PROMPT Creating table StaffShiftSchedule
 
 CREATE TABLE StaffShiftSchedule(
-  ShiftID	  NUMBER(4)	NOT NULL,
-  StaffID	  NUMBER(4)	NOT NULL,
+  ShiftID NUMBER(4)	NOT NULL,
+  StaffID NUMBER(4)	NOT NULL,
   LibraryBranchID NUMBER(4)	NOT NULL,
-  ShiftTypeID	  NUMBER(4)	NOT NULL,
-  ShiftDate	  DATE		NOT NULL,
-  ShiftStartTime  TIMESTAMP	NOT NULL,
-  ShiftEndTime    TIMESTAMP	NOT NULL,
+  ShiftTypeID NUMBER(4)	NOT NULL,
+  ShiftDay  CHAR(3)	NOT NULL,
+  ShiftStartTime TIMESTAMP DEFAULT SYSTIMESTAMP	NOT NULL,
+  ShiftEndTime TIMESTAMP DEFAULT (SYSTIMESTAMP + INTERVAL '8' HOUR) NOT NULL,
   PRIMARY KEY (ShiftID),
   FOREIGN KEY (StaffID) REFERENCES Staff (StaffID),
   FOREIGN KEY (LibraryBranchID) REFERENCES LibraryBranch (LibraryBranchID),
   FOREIGN KEY (ShiftTypeID) REFERENCES ShiftType (ShiftTypeID)
 );
+
