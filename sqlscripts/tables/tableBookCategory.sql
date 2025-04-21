@@ -7,4 +7,3 @@ CREATE TABLE BookCategory(
   FOREIGN KEY (BookID) REFERENCES Book (BookID),
   FOREIGN KEY (CategoryID) REFERENCES Category (CategoryID)
 );
-

@@ -1,5 +1,4 @@
 DROP TABLE Payment CASCADE CONSTRAINTS;
-DROP TABLE PaymentMethod CASCADE CONSTRAINTS;
 DROP TABLE Invoice CASCADE CONSTRAINTS;
 DROP TABLE Fine CASCADE CONSTRAINTS;
 DROP TABLE Loan CASCADE CONSTRAINTS;
@@ -23,6 +22,7 @@ DROP TABLE ShiftType CASCADE CONSTRAINTS;
 DROP TABLE LibraryBranch CASCADE CONSTRAINTS;
 DROP TABLE Address CASCADE CONSTRAINTS;
 DROP TABLE Contact CASCADE CONSTRAINTS;
+DROP TABLE PaymentMethod CASCADE CONSTRAINTS;
 
 @@ tableAddress.sql;
 @@ tableContact.sql;
@@ -35,8 +35,8 @@ DROP TABLE Contact CASCADE CONSTRAINTS;
 @@ tableStaffShiftSchedule.sql;
 @@ tableMembershipType.sql;
 @@ tableStatusCode.sql;
-@@ tableMembership.sql;
 @@ tableBorrower.sql;
+@@ tableMembership.sql;
 @@ tableAuthor.sql;
 @@ tableCategory.sql;
 @@ tableLanguageCode.sql;

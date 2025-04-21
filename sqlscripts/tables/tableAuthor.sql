@@ -10,4 +10,3 @@ CREATE TABLE Author(
   Biography VARCHAR2(700),
   PRIMARY KEY (AuthorID)
 );
-

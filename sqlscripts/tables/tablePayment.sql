@@ -10,4 +10,3 @@ CREATE TABLE Payment(
   FOREIGN KEY (InvoiceID) REFERENCES Invoice (InvoiceID),
   FOREIGN KEY (PaymentMethodID) REFERENCES PaymentMethod(PaymentMethodID)
 );
-

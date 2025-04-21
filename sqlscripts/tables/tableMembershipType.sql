@@ -7,4 +7,3 @@ CREATE TABLE MembershipType(
   MembershipAmount NUMBER(8,2) NOT NULL CHECK (MembershipAmount >= 0),
   PRIMARY KEY (MembershipTypeID)
 );
-

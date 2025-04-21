@@ -15,4 +15,3 @@ CREATE TABLE Invoice (
     OR (FineID IS NULL AND MembershipID IS NOT NULL)
     )
 );
-

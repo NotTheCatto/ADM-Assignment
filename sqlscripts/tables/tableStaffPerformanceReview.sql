@@ -5,10 +5,9 @@ CREATE TABLE StaffPerformanceReview(
   StaffID NUMBER(4) NOT NULL,
   ReviewerID NUMBER(4) NOT NULL,
   ReviewDate DATE DEFAULT SYSDATE NOT NULL,
-  ReviewScore NUMBER(3) NOT NULL CHECK (ReviewScore >= 0 AND ReviewScore <= 100),
-  ReviewComment VARCHAR2(700) NOT NULL,
+  ReviewScore NUMBER(3) NOT NULL CHECK (ReviewScore BETWEEN 0 AND 100),
   PRIMARY KEY (ReviewID),
   FOREIGN KEY (StaffID) REFERENCES Staff (StaffID),
-  FOREIGN KEY (ReviewerID) REFERENCES Staff (StaffID)
+  FOREIGN KEY (ReviewerID) REFERENCES Staff (StaffID),
+  CHECK (ReviewerID <> StaffID)
 );
-

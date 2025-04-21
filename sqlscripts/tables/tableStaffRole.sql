@@ -6,4 +6,3 @@ CREATE TABLE StaffRole(
   RoleDescription VARCHAR2(700) NOT NULL,
   PRIMARY KEY (RoleID)
 );
-

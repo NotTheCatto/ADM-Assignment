@@ -16,4 +16,3 @@ CREATE TABLE Contact (
       )),
   PRIMARY KEY (ContactID)
 );
-
