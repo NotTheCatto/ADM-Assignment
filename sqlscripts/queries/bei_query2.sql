@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Query 2: Details of best performing library staffs in last 5 months
+Boon Earn Iie - Query 2: List of books available for loaning
  */
 CLEAR COLUMNS
 -- Set page size and line size

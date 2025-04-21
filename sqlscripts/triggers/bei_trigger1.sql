@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Trigger 1: Enforce rule of restricting overlapping staff shift schedules
+Boon Earn Iie - Trigger 1: Validate new assignments of staffs’ shift schedules
 */
 CREATE OR REPLACE TRIGGER TRG_XXX
 AFTER INSERT ON XXX
