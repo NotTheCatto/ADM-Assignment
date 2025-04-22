@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Trigger 2: Create fine records if return date of loaned books is greater than due date
+Boon Earn Iie - Trigger 2: Create fine records if books are returned late
 */
 CREATE OR REPLACE TRIGGER TRG_XXX
 AFTER INSERT ON XXX

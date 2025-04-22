@@ -13,3 +13,5 @@ INNER JOIN  ON
 INNER JOIN  ON 
 GROUP BY s.StaffID
 ORDER BY ShiftDay;
+
+-- Create view

@@ -1,4 +1,4 @@
 /*
-Boon Earn Iie - Report 2: Trends in loaned books in past 6 months
+Boon Earn Iie - Report 2: Uptrends in loaned books categories in past 3 months
 */
 
