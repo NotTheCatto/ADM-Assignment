@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Report 1: Top 5 performing library staff in past 1 month
+Boon Earn Iie - Report 1: Top 5 performing library staff in last month
 */
 CREATE OR REPLACE PROCEDURE staff_performance_report IS
     -- Declare cursor variables
@@ -7,37 +7,57 @@ CREATE OR REPLACE PROCEDURE staff_performance_report IS
     shiftSchedule_cursor shift_schedule_cursor_type;
 
     -- Declare variables
+    -- Staff table variables
+    v_StaffID Staff.StaffID%TYPE;
+    v_StaffName Staff.StaffName%TYPE;
+    v_HireDate Staff.HireDate%TYPE;
+    v_StaffID Staff.StaffID%TYPE;
 
     -- Declare cursors
-    CURSOR c1 IS
-	SELECT s.StaffID, s.StaffName, r.RoleName, AVG(p.ReviewScore), a.Street, a.City, a.PostalCode, a.State, a.Country, c.PhoneNo, c.EmailAddress, s.HireDate, s.Gender,
+    CURSOR cursor_staff IS
+	SELECT s.StaffID, s.StaffName, r.RoleName, AVG(p.ReviewScore) AvgScore, a.Street, a.City, a.PostalCode, a.State, a.Country, c.PhoneNo, c.EmailAddress, s.HireDate, s.Gender,
 	    CURSOR (
-	    ) shift_info
+		SELECT t.ShiftName, t.ShiftStartTime, t.ShiftEndTime t.ShiftDescription
+		FROM ShiftType t
+		INNER JOIN StaffShiftSchedule sc ON t.ShiftTypeID=sc.ShiftTypeID
+		INNER JOIN Staff s ON sc.StaffID=s.StaffID
+		ORDER BY ShiftID
+	    ) Shift_Info
 	FROM Staff s,
 	INNER JOIN StaffRole r ON s.RoleID=r.RoleID
-
+	INNER JOIN StaffPerformanceReview p ON s.StaffID=p.StaffID
+	INNER JOIN Address a ON s.AddressID=a.AddressID
+	INNER JOIN Contact a ON s.ContactID=c.ContactID
+	WHERE EXTRACT(month, p.ReviewDate)=EXTRACT(month, SYSDATE)-1
+	GROUP BY StaffID
+	ORDER BY AvgScore
+	LIMIT 5;
 
 BEGIN
     -- Set variables
 
     -- Print report title / headings
-    DBMS_OUTPUT.PUT_LINE('CUSTOMERS MONTHLY ORDER REPORT FOR THE MONTH OF ' || TO_CHAR(SYSDATE, 'MONTH') || ' ' || EXTRACT(YEAR FROM SYSDATE));
+    DBMS_OUTPUT.PUT_LINE('Top 5 performing library staff in ' || TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'MONTH') || ' ' || EXTRACT(YEAR FROM ADD_MONTHS(SYSDATE, -1)));
     --DBMS_OUTPUT.PUT_LINE(CHR(10));
     DBMS_OUTPUT.PUT_LINE('Date Printed: ' || TO_CHAR(SYSDATE, 'dd-Mon-yyyy'));
     --DBMS_OUTPUT.PUT_LINE(CHR(10));
 
     -- Open cursor
+    OPEN cursor_staff
 
     -- Loop
+    LOOP
+
+	-- Fetch
+	FETCH cursor_staff INTO v_CustNo, v_CustName, v_ContactPhone, v_SalesRepEmpNo, v_SalesRepEmpName, cursor_order;
 
 	-- Break loop if cursor fetches nothing
 	EXIT WHEN <cursor>$NOTFOUND;
 
-	-- Fetch
-
 	-- Print
 
     -- End loop
+    END LOOP
 
     -- Output grand total / summary
 

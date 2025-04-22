@@ -8,12 +8,17 @@ DECLARE
     -- Declare neccessary variables
 
 BEGIN
-    -- Fetch all assigned shift schedules
+    -- Loop
 
-    -- Compare inserted start and end time with existing shift start and end time
+        -- Fetch all assigned shift schedules
 
-    -- Raise error if overlapping found
+        -- Compare inserted start and end time with existing shift start and end time
 
+        -- Print overlapped 
+
+        -- Raise error if overlapping found
+
+    -- End loop
 END;
 /
 

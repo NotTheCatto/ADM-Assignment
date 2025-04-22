@@ -12,9 +12,9 @@ BEGIN
 
     -- If return date is NULL, end trigger
 
-    -- Compare due date greater than due date, create Fine record, else end trigger
+    -- Compare if return date later than due date, create Fine record, else end trigger
 
-    -- Prompt Fine record is created alongsidee new FineID
+    -- Display Fine record created alongside new FineID
 
 END;
 /

@@ -2,7 +2,7 @@
 Boon Earn Iie - Procedure 1: Loan books to borrowers
 */
 
-CREATE OR REPLACE PROCEDURE staff_performance_report IS
+CREATE OR REPLACE PROCEDURE borrower_loan_books IS
     -- (Set parameters: StaffID)
 
     -- Declare variables
