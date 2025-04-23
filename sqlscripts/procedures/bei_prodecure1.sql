@@ -4,7 +4,7 @@ CREATE OR REPLACE PROCEDURE borrower_loan_books(
 	p_BorrowerID Borrower.BorrowerID%TYPE,
 	p_BookCopyID BookCopy.BookCopyID%TYPE
 )IS
-    -- Declare variables
+	-- Declare variables
 	v_LOANDATE LOAN.LOANDATE%TYPE
 	v_DUEDATE LOAN.DUEDATE%TYPE
 BEGIN
@@ -13,19 +13,28 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE('BorrowerID: ' || p_BorrowerID);
 	DBMS_OUTPUT.PUT_LINE('BookCopyID: ' || p_BookCopyID);
 
-    -- Set variables
-	v_LOANDATE := SYSDATE;
-	v_DUEDATE := ADDAYS(SYSDATE, 14);
+	-- Set variables
 
 	-- Start transaction
-	-- Set status code for BookCopyID record
 
-	-- Get current date
-	-- Calculate due date
-	-- Create Loan record
-	INSERT INTO Loan (LoanID, BorrowerID, BookCopyID, LoanProcessedByStaffID, ReturnProcessedByStaffID, LoanDate, DueDate, ReturnDate) VALUES (SEQ_LOAN, p_BorrowerID, p_BookCopyID, p_StaffID, NULL, v_LOANDATE, v_DUEDATE, NULL);
-	-- Commit transaction
-	Commit;
+	-- Check if status code is 1
+	IF 
+		-- Set status code for BookCopyID record
+		UPDATE BookCopy
+		SET StatusCode=2 -- 2 for 'Reserved' bazed on sample records
+		WHERE BookCopyID=p=BookCopyID;
+	
+		-- Get current date
+		v_LOANDATE := SYSDATE;
+	
+		-- Calculate due date
+		v_DUEDATE := ADDDAYS(SYSDATE, 14);
+	
+		-- Create Loan record
+		INSERT INTO Loan (LoanID, BorrowerID, BookCopyID, LoanProcessedByStaffID, ReturnProcessedByStaffID, LoanDate, DueDate, ReturnDate) VALUES (SEQ_LOAN, p_BorrowerID, p_BookCopyID, p_StaffID, NULL, v_LOANDATE, v_DUEDATE, NULL);
+	
+		-- Commit transaction
+		Commit;
 
 -- Handle exceptions
 EXCEPTION
