@@ -1,0 +1,10 @@
+INSERT INTO Category (CategoryID, CategoryName, CategoryDescription) VALUES (1, 'Fiction', 'Literary works based on imaginative storytelling rather than real events.');
+INSERT INTO Category (CategoryID, CategoryName, CategoryDescription) VALUES (2, 'Non‑Fiction', 'Informative works based on factual information and real-life subjects.');
+INSERT INTO Category (CategoryID, CategoryName, CategoryDescription) VALUES (3, 'Mystery', 'Stories centered around solving crimes, uncovering secrets, and suspenseful twists.');
+INSERT INTO Category (CategoryID, CategoryName, CategoryDescription) VALUES (4, 'Science Fiction', 'Speculative narratives exploring futuristic technology, space, and scientific ideas.');
+INSERT INTO Category (CategoryID, CategoryName, CategoryDescription) VALUES (5, 'Fantasy', 'Imaginative tales featuring magic, mythical worlds, and supernatural elements.');
+INSERT INTO Category (CategoryID, CategoryName, CategoryDescription) VALUES (6, 'Biography', 'Narratives detailing the life stories and experiences of real people.');
+INSERT INTO Category (CategoryID, CategoryName, CategoryDescription) VALUES (7, 'Self‑Help', 'Guides and advice aimed at personal improvement and self‑development.');
+INSERT INTO Category (CategoryID, CategoryName, CategoryDescription) VALUES (8, 'History', 'Works that explore past events, civilizations, and historical analysis.');
+INSERT INTO Category (CategoryID, CategoryName, CategoryDescription) VALUES (9, 'Romance', 'Stories focused on love, relationships, and emotional connections.');
+INSERT INTO Category (CategoryID, CategoryName, CategoryDescription) VALUES (10, 'Thriller', 'Fast‑paced narratives designed to evoke excitement, tension, and suspense.');

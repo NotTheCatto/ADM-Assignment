@@ -1,0 +1,7 @@
+INSERT INTO StatusCode (StatusCode, StatusName, StatusDescription) VALUES (1, 'Available', 'The book copy is currently on the shelf and can be borrowed by members.');
+INSERT INTO StatusCode (StatusCode, StatusName, StatusDescription) VALUES (2, 'Reserved', 'The book copy is reserved for a member and will be available after the current borrower returns it.');
+INSERT INTO StatusCode (StatusCode, StatusName, StatusDescription) VALUES (3, 'Under Maintenance', 'The book copy is temporarily unavailable due to repairs or maintenance.');
+INSERT INTO StatusCode (StatusCode, StatusName, StatusDescription) VALUES (4, 'Paid', 'The overdue fine is fully settled.');
+INSERT INTO StatusCode (StatusCode, StatusName, StatusDescription) VALUES (5, 'Unpaid', 'The overdue fine is not yet settled and must be paid to restore borrowing privileges.');
+INSERT INTO StatusCode (StatusCode, StatusName, StatusDescription) VALUES (6, 'Active', 'The borrower membership is valid, with fees paid and borrowing privileges enabled.');
+INSERT INTO StatusCode (StatusCode, StatusName, StatusDescription) VALUES (7, 'Expired', 'The borrower is no longer valid due to unpaid fees or expired duration which borrowing privileges are restricted.');

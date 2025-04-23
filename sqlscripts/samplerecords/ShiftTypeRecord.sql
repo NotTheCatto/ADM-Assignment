@@ -1,0 +1,3 @@
+INSERT INTO ShiftType (ShiftTypeID, ShiftName, ShiftDescription, ShiftStartTime, ShiftEndTime) VALUES (1, 'Night', 'Night Shift from 12:00 a.m to 7:59 a.m.', TIMESTAMP '2000-01-01 00:00:00', TIMESTAMP '2000-01-01 07:59:59');
+INSERT INTO ShiftType (ShiftTypeID, ShiftName, ShiftDescription, ShiftStartTime, ShiftEndTime) VALUES (2, 'Day', 'Day Shift from 8:00 a.m. to 3:59 p.m.', TIMESTAMP '2000-01-01 08:00:00', TIMESTAMP '2000-01-01 15:59:59');
+INSERT INTO ShiftType (ShiftTypeID, ShiftName, ShiftDescription, ShiftStartTime, ShiftEndTime) VALUES (3, 'Evening', 'Evening Shift from 4:00 p.m. to 11:59 p.m.', TIMESTAMP '2000-01-01 16:00:00', TIMESTAMP '2000-01-02 23:59:59');

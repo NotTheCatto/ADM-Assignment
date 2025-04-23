@@ -1,0 +1,13 @@
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (1, 201, 201, 'Perpustakaan Awam Johor');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (2, 202, 202, 'Perpustakaan Awam Kedah');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (3, 203, 203, 'Perpustakaan Awam Kelantan');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (4, 204, 204, 'Perpustakaan Awam Melaka');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (5, 205, 205, 'Perpustakaan Awam Negeri Sembilan');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (6, 206, 206, 'Perpustakaan Awam Terengganu');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (7, 207, 207, 'Perpustakaan Awam Perak');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (8, 208, 208, 'Perpustakaan Awam Perlis');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (9, 209, 209, 'Perpustakaan Awam Pulau Pinang');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (10, 210, 210, 'Perpustakaan Awam Sabah');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (11, 211, 211, 'Perpustakaan Awam Sarawak');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (12, 212, 212, 'Perpustakaan Awam Selangor');
+INSERT INTO LibraryBranch (LibraryBranchID, AddressID, ContactID, BranchName) VALUES (13, 213, 213, 'Perpustakaan Awam Wilayah statPersekutuan');

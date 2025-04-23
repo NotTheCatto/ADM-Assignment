@@ -1,0 +1,3 @@
+INSERT INTO MembershipType (MembershipTypeID, MembershipName, MembershipDescription, MembershipAmount) VALUES (1, 'Basic', 'Borrow up to 2 books for 14 days.', 8.00);
+INSERT INTO MembershipType (MembershipTypeID, MembershipName, MembershipDescription, MembershipAmount) VALUES (2, 'Standard', 'Borrow up to 5 books for 21 days.', 20.00);
+INSERT INTO MembershipType (MembershipTypeID, MembershipName, MembershipDescription, MembershipAmount) VALUES (3, 'Premium', 'Borrow up to 10 books for 30 days.', 40.00);

@@ -1,0 +1,10 @@
+INSERT INTO LanguageCode (LanguageCode, LanguageName) VALUES (1, 'English');
+INSERT INTO LanguageCode (LanguageCode, LanguageName) VALUES (2, 'Chinese');
+INSERT INTO LanguageCode (LanguageCode, LanguageName) VALUES (3, 'Malay');
+INSERT INTO LanguageCode (LanguageCode, LanguageName) VALUES (4, 'Tamil');
+INSERT INTO LanguageCode (LanguageCode, LanguageName) VALUES (5, 'Arabic');
+INSERT INTO LanguageCode (LanguageCode, LanguageName) VALUES (6, 'Punjabi');
+INSERT INTO LanguageCode (LanguageCode, LanguageName) VALUES (7, 'French');
+INSERT INTO LanguageCode (LanguageCode, LanguageName) VALUES (8, 'German');
+INSERT INTO LanguageCode (LanguageCode, LanguageName) VALUES (9, 'Japanese');
+INSERT INTO LanguageCode (LanguageCode, LanguageName) VALUES (10, 'Korean');
