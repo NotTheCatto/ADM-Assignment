@@ -4,9 +4,17 @@ CREATE OR REPLACE PROCEDURE borrower_loan_books(
 	p_BorrowerID Borrower.BorrowerID%TYPE,
 	p_BookCopyID BookCopy.BookCopyID%TYPE
 )IS
+	-- Declare cursor variables
+	TYPE bookcopy_cursor_type IS REF_CURSOR;
+	bookcopy_cursor bookcopy_cursor_type;
+
 	-- Declare variables
-	v_LOANDATE LOAN.LOANDATE%TYPE
-	v_DUEDATE LOAN.DUEDATE%TYPE
+	v_LOANDATE Loan.LoanDate%TYPE;
+	v_DUEDATE Loan.DueDate%TYPE;
+	v_StatusCode BookCopy.StatusCode%TYPE;
+
+	-- Declare exceptions
+	copy_not_available EXCEPTION;
 BEGIN
 	-- Print param variables
 	DBMS_OUTPUT.PUT_LINE('StaffID: ' || p_StaffID);
@@ -14,11 +22,13 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE('BookCopyID: ' || p_BookCopyID);
 
 	-- Set variables
+	OPEN bookcopy_cursor FOR 'SELECT StatusCode FROM BookCopy WHERE BookCopyID=p_BookCopyID';
 
 	-- Start transaction
-
 	-- Check if status code is 1
-	IF 
+	FETCH bookcopy_cursor INTO v_StatusCode;
+	CLOSE bookcopy_cursor;
+	IF v_StatusCode = 1 THEN
 		-- Set status code for BookCopyID record
 		UPDATE BookCopy
 		SET StatusCode=2 -- 2 for 'Reserved' bazed on sample records
@@ -35,10 +45,19 @@ BEGIN
 	
 		-- Commit transaction
 		Commit;
+	ELSE
+		RAISE copy_not_available;
+	END IF;
 
 -- Handle exceptions
 EXCEPTION
-	ROLLBACK;
+	WHEN copy_not_available THEN
+		DBMS_OUTPUT.PUT_LINE('--- ERROR ---');
+		DBMS_OUTPUT.PUT_LINE('BookCopy ''' || p_BookCopyID || ''' is not available for loan.');
+	WHEN others THEN
+		DBMS_OUTPUT.PUT_LINE('--- ERROR ---');
+		DBMS_OUTPUT.PUT_LINE('An exception has occured.');
+		ROLLBACK;
 
 END;
 /
