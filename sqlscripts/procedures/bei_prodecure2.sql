@@ -2,11 +2,13 @@
 Boon Earn Iie - Procedure 2: Schedule library staff to new shift schedule
 */
 
-CREATE OR REPLACE PROCEDURE schedule_staff_shift IS
-    -- (Set parameters: StaffID)
-
+CREATE OR REPLACE PROCEDURE schedule_staff_shift(
+    p_StaffID Staff.StaffID%TYPE,
+    p_ShiftTypeID ShiftType.ShiftTypeID%TYPE,
+    p_LibraryBranchID LibraryBranch.LibraryBranchID%TYPE
+)IS
     -- Declare cursor variables
-    TYPE schedule_cursor_type IS REF CURSOR;
+    TYPE schedule_cursor IS REF CURSOR;
     existingSchedule_cursor schedule_cursor_type;
 
     -- Declare variables
@@ -18,12 +20,6 @@ CREATE OR REPLACE PROCEDURE schedule_staff_shift IS
         ORDER BY ShiftTypeID
 
 BEGIN
-    -- Prompt StaffID to assign schedule
-    DBMS_OUTPUT.PUT_LINE('Enter Staff ID of the staff to be assigned shift schedule');
-
-    -- List all shift schedule the entered staff is already in
-    
-
     -- List all available shift types and prompt user to select a shift type to assign to (Consider option to create shift type)
     OPEN cursor_types;
     LOOP
@@ -36,20 +32,6 @@ BEGIN
     END LOOP;
     CLOSE cursor_types;
 
-
-    -- If user select create shift type (?)
-
-        -- Prompt ShiftName for new ShiftType
-
-        -- Prompt ShiftDescription for new ShiftType
-
-        -- Prompt ShiftStartTime  for new ShiftType
-
-        -- Prompt ShiftEndTime for new ShiftType
-
-        -- Insert new shift type
-
-    -- List all library branches and prompt user to select a library branch to assign to
 
 END;
 /
