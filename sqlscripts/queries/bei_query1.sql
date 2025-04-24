@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Query 1: Summary of staff shift schedule and details of assigned staff
+Boon Earn Iie - Query 1: Summary of staff shift schedule and details of assigned staff  WARN: Pending testing
 */
 CLEAR COLUMNS
 -- Set page size and line size

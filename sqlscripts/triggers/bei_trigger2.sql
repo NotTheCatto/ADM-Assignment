@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Trigger 2: Create fine records if books are returned late
+Boon Earn Iie - Trigger 2: Create fine records if books are returned late  WARN: Incomplete
 */
 CREATE OR REPLACE TRIGGER TRG_XXX
 AFTER INSERT ON XXX

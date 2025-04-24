@@ -1,5 +1,6 @@
 /*
-Boon Earn Iie - Query 2: List of books available for loaning
+Boon Earn Iie - Query 2: List of books available for loaning  WARN: Pending testing
+
  */
 CLEAR COLUMNS
 -- Set page size and line size
