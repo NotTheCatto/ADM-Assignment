@@ -1,3 +1,5 @@
+-- WARN: Pending testing
+DROP TABLE MembershipCatalog CASCADE CONSTRAINTS;
 DROP TABLE Payment CASCADE CONSTRAINTS;
 DROP TABLE Invoice CASCADE CONSTRAINTS;
 DROP TABLE Fine CASCADE CONSTRAINTS;
@@ -49,3 +51,5 @@ DROP TABLE PaymentMethod CASCADE CONSTRAINTS;
 @@ tableInvoice.sql;
 @@ tablePaymentMethod.sql;
 @@ tablePayment.sql;
+-- WARN: Pending testing
+@@ tableMembershipCatalog.sql;
