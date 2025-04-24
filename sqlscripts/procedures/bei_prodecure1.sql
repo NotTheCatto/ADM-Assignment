@@ -21,6 +21,7 @@ CREATE OR REPLACE PROCEDURE borrower_loan_books(
 
 	-- Declare exceptions
 	copy_not_available EXCEPTION;
+
 BEGIN
 	-- Set variables
 	OPEN bookcopy_cursor FOR 'SELECT StatusCode FROM BookCopy WHERE BookCopyID=' || p_BookCopyID;
