@@ -1,37 +1,56 @@
 /*
-Boon Earn Iie - Procedure 2: Schedule library staff to new shift schedule
+Boon Earn Iie - Procedure 2: Record review of staffs' performance  WARN: Pending testing
 */
 
-CREATE OR REPLACE PROCEDURE schedule_staff_shift(
-    p_StaffID Staff.StaffID%TYPE,
-    p_ShiftTypeID ShiftType.ShiftTypeID%TYPE,
-    p_LibraryBranchID LibraryBranch.LibraryBranchID%TYPE
+SET SERVEROUTPUT ON;
+CREATE OR REPLACE PROCEDURE review_staff_performance(
+	p_ReviewedStaffID Staff.StaffID%TYPE,
+	p_ReviewingStaffID Staff.StaffID%TYPE,
+	p_ReviewScore StaffPerformanceReview.ReviewScore%TYPE,
+	p_ReviewComment StaffPerformanceReview.ReviewComment%TYPE,
 )IS
-    -- Declare cursor variables
-    TYPE schedule_cursor IS REF CURSOR;
-    existingSchedule_cursor schedule_cursor_type;
+	-- Declare cursor variables
+	TYPE role_cursor_type IS REF CURSOR;
+	role_cursor role_cursor_type;
 
-    -- Declare variables
+	-- Declare variables
+	v_RoleID StaffRole.RoleID;
 
-    -- Declare cursors
-    CURSOR cursor_scheduleTypes IS
-        SELECT *
-        FROM ShiftType
-        ORDER BY ShiftTypeID
+	-- Declare exceptions
+	invalid_reviewer_role EXCEPTION;
+	invalid_score EXCEPTION;
 
 BEGIN
-    -- List all available shift types and prompt user to select a shift type to assign to (Consider option to create shift type)
-    OPEN cursor_types;
-    LOOP
-        FETCH cursor_types INTO v_ShiftTypeID, v_ShiftName, v_ShiftDescription, v_ShiftStartTime,v_ShiftEndTime;
-        EXIT WHEN cursor_types%NOTFOUND;
-        -- WARN: Potential error
+	-- Check if reviewer has an appropriate role
+	OPEN role_cursor FOR 'SELECT RoleID FROM Staff WHERE StaffID=' || ReviewingStaffID;
+	FETCH role_cursor INTO v_RoleID;
+	CLOSE role_cursor;
+	IF ( v_RoleID != 3 ) THEN -- 3 for circulation supervisor
+		RAISE invalid_reviewer_role;
+	END IF;
 
-        DBMS_OUTPUT.PUT_LINE('Enter Staff ID of the staff to be assigned shift schedule');
+	-- Validate score
+	IF ( p_ReviewScore < 0 OR p_ReviewScore > 100 ) THEN
+		RAISE invalid_score;
+	END IF;
 
-    END LOOP;
-    CLOSE cursor_types;
+	-- Insert review record
+	INSERT INTO StaffPerformanceReview (ReviewID, StaffID, ReviewerID, ReviewDate, ReviewScore) VALUES (SEQ_PERFORMANCE, p_ReviewedStaffID, p_ReviewingStaffID, SYSDATE, p_ReviewScore);
 
-
+EXCEPTION
+	WHEN invalid_reviewer_role THEN
+		DBMS_OUTPUT.PUT_LINE('--- ERROR ---');
+		DBMS_OUTPUT.PUT_LINE('Reviewing staff's role ''' || v_RoleID || ''' is not a valid role for reviewing staffs'' performance.');
+	WHEN invalid_score THEN
+		DBMS_OUTPUT.PUT_LINE('--- ERROR ---');
+		DBMS_OUTPUT.PUT_LINE('Review score of ''' || p_ReviewScore || ''' is not a valid score.');
+	WHEN others THEN
+		v_code := SQLCODE;
+		v_errMsg := SUBSTR(SQLERRM, 1, 64);
+		DBMS_OUTPUT.PUT_LINE('--- ERROR ---');
+		DBMS_OUTPUT.PUT_LINE('An exception has occured.');
+		DBMS_OUTPUT.PUT_LINE('Error code: ' || v_code);
+		DBMS_OUTPUT.PUT_LINE('Error message: ' || v_errmsg);
+		ROLLBACK;
 END;
 /

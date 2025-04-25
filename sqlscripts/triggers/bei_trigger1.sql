@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Trigger 1: Validate new assignments of staffs’ shift schedules
+Boon Earn Iie - Trigger 1: Validate new assignments of staffs’ shift schedules  WARN: Incomplete
 */
 CREATE OR REPLACE TRIGGER TRG_XXX
 AFTER INSERT ON XXX
