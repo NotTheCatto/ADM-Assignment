@@ -8,22 +8,48 @@ DECLARE
 	-- Declare neccessary variables
 
 BEGIN
-	-- Fetch statuscode of book
-
 	-- Fetch all Loan records that is associated with the BookCopyID
-
 	-- Check if thre are any NULL values in ReturnDate field
+	OPEN loan_cursor;
+	LOOP
+		FETCH loan_cursor INTO;
+		-- if return date null, flag on
+
+	END LOOP
+	CLOSE loan_cursor;
+
+	-- Open cursor
+	OPEN bookcopy_cursor;
+
+	-- Fetch statuscode of book
+	FETCH bookcopy_cursor INTO;
 
 	-- If NULL value found, check if 1 or 3
+	IF (<flag on>) THEN
+		-- ch2ck if 2
+		-- else correct to 3 and print warning msg
 
-		-- If 1, change to 2 and set success msg
+	ELSE
+		-- check if 1 or 3
+		-- else correct to 2 and print borrower name and contact info
 
-		-- Else if 3, warn anomaly alongside Loan details
+	END IF;
 
-	-- Else if no NULL value, check and set to 1 if not 1 and set success msg
-
+EXCEPTION
+	WHEN overlapped_schedule THEN
+		DBMS_OUTPUT.PUT_LINE('--- ERROR ---');
+		DBMS_OUTPUT.PUT_LINE('BookCopy with the ID ''' || p_BookCopyID || ''' is not available for loan.');
+	WHEN others THEN
+		v_code := SQLCODE;
+		v_errMsg := SUBSTR(SQLERRM, 1, 64);
+		DBMS_OUTPUT.PUT_LINE('--- ERROR ---');
+		DBMS_OUTPUT.PUT_LINE('An exception has occured.');
+		DBMS_OUTPUT.PUT_LINE('Error code: ' || v_code);
+		DBMS_OUTPUT.PUT_LINE('Error message: ' || v_errmsg);
+		ROLLBACK;
 END;
 /
+
 
 /* Example
 CREATE OR REPLACE TRIGGER TRG_UPT_ORDERS_AMT
