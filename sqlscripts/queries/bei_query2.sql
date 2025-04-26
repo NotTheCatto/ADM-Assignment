@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Query 2: List of books available for loaning  WARN: Pending testing
+Boon Earn Iie - Query 2: List of books available for loaning
  */
 CLEAR COLUMNS;
 TTITLE ON;
@@ -25,7 +25,7 @@ GROUP BY b.BookID, b.Title, l.LanguageName
 ORDER BY l.LanguageName, b.Title;
 
 -- Create view  WARN: Pending testing
-CREATE VIEW available_books AS
+CREATE OR REPLACE VIEW available_books AS
 	SELECT b.BookID, b.Title, l.LanguageName AS Language, COUNT(c.BookCopyID) AS Qty, LISTAGG(c.BookCopyID, ', ') WITHIN GROUP (ORDER BY b.BookID, b.Title, l.LanguageName) "AVAILABLE_COPIES"
 	FROM Book b
 	INNER JOIN BookCopy c ON b.BookID=c.BookID
@@ -33,5 +33,5 @@ CREATE VIEW available_books AS
 	INNER JOIN LanguageCode l ON b.LanguageCode=l.LanguageCode
 	WHERE s.StatusName = 'Available'
 	GROUP BY b.BookID, b.Title, l.LanguageName
-	ORDER BY l.LanguageName, b.Title;
+	ORDER BY l.LanguageName, b.Title
 	WITH READ ONLY;
