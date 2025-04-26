@@ -6,15 +6,17 @@ SET SERVEROUTPUT ON;
 CREATE OR REPLACE PROCEDURE review_staff_performance(
 	p_ReviewedStaffID Staff.StaffID%TYPE,
 	p_ReviewingStaffID Staff.StaffID%TYPE,
-	p_ReviewScore StaffPerformanceReview.ReviewScore%TYPE,
-	p_ReviewComment StaffPerformanceReview.ReviewComment%TYPE,
+	p_ReviewScore StaffPerformanceReview.ReviewScore%TYPE
 )IS
 	-- Declare cursor variables
 	TYPE role_cursor_type IS REF CURSOR;
 	role_cursor role_cursor_type;
 
 	-- Declare variables
-	v_RoleID StaffRole.RoleID;
+	v_RoleID StaffRole.RoleID%TYPE;
+
+	v_code NUMBER;
+	v_errMsg VARCHAR2(64);
 
 	-- Declare exceptions
 	invalid_reviewer_role EXCEPTION;
@@ -22,7 +24,7 @@ CREATE OR REPLACE PROCEDURE review_staff_performance(
 
 BEGIN
 	-- Check if reviewer has an appropriate role
-	OPEN role_cursor FOR 'SELECT RoleID FROM Staff WHERE StaffID=' || ReviewingStaffID;
+	OPEN role_cursor FOR 'SELECT RoleID FROM Staff WHERE StaffID=' || p_ReviewingStaffID;
 	FETCH role_cursor INTO v_RoleID;
 	CLOSE role_cursor;
 	IF ( v_RoleID != 3 ) THEN -- 3 for circulation supervisor
@@ -35,12 +37,22 @@ BEGIN
 	END IF;
 
 	-- Insert review record
-	INSERT INTO StaffPerformanceReview (ReviewID, StaffID, ReviewerID, ReviewDate, ReviewScore) VALUES (SEQ_PERFORMANCE, p_ReviewedStaffID, p_ReviewingStaffID, SYSDATE, p_ReviewScore);
+	INSERT INTO StaffPerformanceReview (ReviewID, StaffID, ReviewerID, ReviewDate, ReviewScore) VALUES (SEQ_PERFORMANCE.nextval, p_ReviewedStaffID, p_ReviewingStaffID, SYSDATE, p_ReviewScore);
+
+	-- Commit transaction
+	Commit;
+
+	-- Print success message
+	DBMS_OUTPUT.PUT_LINE('--- SUCCESS ---');
+	DBMS_OUTPUT.PUT_LINE('Reviewed Staff ID: ' || p_ReviewedStaffID);
+	DBMS_OUTPUT.PUT_LINE('Reviewing Staff ID: ' || p_ReviewingStaffID);
+	DBMS_OUTPUT.PUT_LINE('Date reviewed: ' || TO_DATE(SYSDATE, 'DD-MON-YYYY'));
+	DBMS_OUTPUT.PUT_LINE('Score given: ' || p_ReviewScore);
 
 EXCEPTION
 	WHEN invalid_reviewer_role THEN
 		DBMS_OUTPUT.PUT_LINE('--- ERROR ---');
-		DBMS_OUTPUT.PUT_LINE('Reviewing staff's role ''' || v_RoleID || ''' is not a valid role for reviewing staffs'' performance.');
+		DBMS_OUTPUT.PUT_LINE('Reviewing staff''s role ''' || v_RoleID || ''' is not a valid role for reviewing staff''s performance.');
 	WHEN invalid_score THEN
 		DBMS_OUTPUT.PUT_LINE('--- ERROR ---');
 		DBMS_OUTPUT.PUT_LINE('Review score of ''' || p_ReviewScore || ''' is not a valid score.');
