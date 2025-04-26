@@ -1,8 +1,8 @@
 /*
 Boon Earn Iie - Trigger 1: Validate and warn new assignments of staffs’ shift schedules
 */
-CREATE OR REPLACE TRIGGER TRG_XXX
-BEFORE INSERT ON StaffShiftSchedule
+CREATE OR REPLACE TRIGGER TRG_VAL_SHIFT
+BEFORE INSERT OR UPDATE ON StaffShiftSchedule
 FOR EACH ROW
 DECLARE
 	-- Declare neccessary variables
@@ -27,7 +27,7 @@ DECLARE
 
 BEGIN
 	-- Open cursor
-	OPEN schedule_cursor FOR
+	OPEN schedule_cursor FOR 
 		'SELECT s.ShiftID, t.ShiftStartTime, t.ShiftEndTime
 		FROM ShiftType t
 		INNER JOIN StaffShiftSchedule s ON t.ShiftTypeID = s.ShiftTypeID
