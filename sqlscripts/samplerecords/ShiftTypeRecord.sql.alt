@@ -1,0 +1,1 @@
+INSERT INTO ShiftType (ShiftTypeID, ShiftName, ShiftDescription, ShiftStartTime, ShiftEndTime) VALUES (4, 'Parttime 1', 'Part time scheduel for day shifts', TIMESTAMP '2000-01-01 09:00:00', TIMESTAMP '2000-01-01 10:59:59');
