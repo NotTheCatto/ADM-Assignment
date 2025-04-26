@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Report 1: Top 5 performing library staff in last month  WARN: Incomplete
+Boon Earn Iie - Report 1: Top 5 performing library staff in last month
 */
 SET PAGESIZE 0;
 SET SERVEROUTPUT ON;
@@ -32,17 +32,12 @@ CREATE OR REPLACE PROCEDURE staff_performance_report IS
 	v_ShiftEndTime ShiftType.ShiftEndTime%TYPE;
 	v_ShiftDescription ShiftType.ShiftDescription%TYPE;
 
+	v_i NUMBER(2);
+
 	-- Declare cursors
 	CURSOR cursor_staff IS
 		SELECT * FROM (
 			SELECT s.StaffID, s.StaffFirstName, s.StaffLastName, r.RoleName, AVG(p.ReviewScore) AvgScore, a.Street, a.City, a.PostalCode, a.State, a.Country, c.PhoneNo, c.EmailAddress, s.HireDate, s.StaffGender
--- 			CURSOR (
--- 				SELECT t.ShiftName, TO_CHAR(t.ShiftStartTime,'hh24:mi:ss'), TO_CHAR(t.ShiftEndTime,'hh24:mi:ss'), t.ShiftDescription
--- 				FROM ShiftType t
--- 				INNER JOIN StaffShiftSchedule sc ON t.ShiftTypeID=sc.ShiftTypeID
--- 				INNER JOIN Staff s ON sc.StaffID=s.StaffID
--- 				ORDER BY ShiftID
--- 			) Shift_Info
 			FROM Staff s
 			INNER JOIN StaffRole r ON s.RoleID=r.RoleID
 			INNER JOIN StaffPerformanceReview p ON s.StaffID=p.StaffID
@@ -55,12 +50,13 @@ CREATE OR REPLACE PROCEDURE staff_performance_report IS
 
 BEGIN
 	-- Set variables
+	v_i := 0;
 
 	-- Print report title / headings
-	DBMS_OUTPUT.PUT_LINE('Top 5 performing library staff in ' || TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'MONTH') || ' ' || EXTRACT(YEAR FROM ADD_MONTHS(SYSDATE, -1)));
-	--DBMS_OUTPUT.PUT_LINE(CHR(10));
+	DBMS_OUTPUT.PUT_LINE(CHR(10));
+	DBMS_OUTPUT.PUT_LINE(' --- Top 5 performing library staff in ' || TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'MONTH') || ' ' || EXTRACT(YEAR FROM ADD_MONTHS(SYSDATE, -1)) || ' --- ');
 	DBMS_OUTPUT.PUT_LINE('Date Printed: ' || TO_CHAR(SYSDATE, 'dd-Mon-yyyy'));
-	--DBMS_OUTPUT.PUT_LINE(CHR(10));
+	DBMS_OUTPUT.PUT_LINE(CHR(10));
 
 	-- Open cursor
 	OPEN cursor_staff;
@@ -69,23 +65,41 @@ BEGIN
 	LOOP
 		-- Fetch
 		FETCH cursor_staff INTO v_StaffID, v_StaffFirstName, v_StaffLastName, v_RoleName, v_AvgScore, v_Street, v_City, v_PostalCode, v_State, v_Country, v_PhoneNo, v_EmailAddress, v_HireDate, v_StaffGender;
-	
 		-- Break loop if cursor fetches nothing
 		EXIT WHEN cursor_staff%NOTFOUND;
+
+		v_i := v_i + 1;
+
+		DBMS_OUTPUT.PUT_LINE('No. ' || v_i || CHR(9) );
+		DBMS_OUTPUT.PUT_LINE('Staff ID: ' || v_StaffID || CHR(9) || CHR(9) || 'Staff Name: ' || v_StaffFirstName || ' ' || v_StaffLastName || CHR(9) || CHR(9) || 'Gender: ' || v_StaffGender);
+		DBMS_OUTPUT.PUT_LINE('Role: ' || v_RoleName || CHR(9) || CHR(9) || 'Average score: ' || v_AvgScore);
+		DBMS_OUTPUT.PUT_LINE('Address: ' || v_Street || ', ' || v_City || ', ' || v_PostalCode || ', ' || v_State || ', ' || v_Country);
+		DBMS_OUTPUT.PUT_LINE('Contact: ' || v_PhoneNo || ', ' || v_EmailAddress);
+		DBMS_OUTPUT.PUT_LINE('Hire date: ' || v_HireDate);
+		DBMS_OUTPUT.PUT_LINE(CHR(10));
+
+		DBMS_OUTPUT.PUT_LINE('Assigned shift schedule(s)');
+		DBMS_OUTPUT.PUT_LINE('==========================================================================================');
+		DBMS_OUTPUT.PUT_LINE('Shift name' || CHR(9) || 'Start time' || CHR(9) || 'End time' || CHR(9) || 'Description' || CHR(9) || CHR(9));
+		DBMS_OUTPUT.PUT_LINE('==========================================================================================');
 	
 		-- Print
 		OPEN shiftSchedule_cursor FOR 'SELECT t.ShiftName, t.ShiftStartTime, t.ShiftEndTime, t.ShiftDescription
 		FROM ShiftType t
 		INNER JOIN StaffShiftSchedule sc ON t.ShiftTypeID=sc.ShiftTypeID
-		INNER JOIN Staff s ON sc.StaffID=' || v_StaffID || '
-		ORDER BY ShiftID';
+		WHERE sc.StaffID = ' || v_StaffID || 'ORDER BY ShiftID';
+
 		LOOP
-			FETCH shiftSchedule_cursor INTO v_Shiftname, v_ShiftStartTime, v_ShiftEndTime, v_ShiftDescription;
+			FETCH shiftSchedule_cursor INTO v_ShiftName, v_ShiftStartTime, v_ShiftEndTime, v_ShiftDescription;
 			EXIT WHEN shiftSchedule_cursor%NOTFOUND;
+
+			DBMS_OUTPUT.PUT_LINE(v_ShiftName || CHR(9) || CHR(9) || TO_CHAR(v_ShiftStartTime,'hh24:mi:ss') || CHR(9) || TO_CHAR(v_ShiftEndTime,'hh24:mi:ss') || CHR(9) || v_ShiftDescription || CHR(9) || CHR(9));
 
 		END LOOP;
 		CLOSE shiftSchedule_cursor;
-	
+
+		DBMS_OUTPUT.PUT_LINE('==========================================================================================');
+		DBMS_OUTPUT.PUT_LINE(CHR(10));
 	-- End loop
 	END LOOP;
 
