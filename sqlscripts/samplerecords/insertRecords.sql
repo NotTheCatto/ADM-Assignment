@@ -5,10 +5,8 @@ SET DEFINE OFF;
 
 PROMPT Deleting records...;
 BEGIN
--- WARN: Pending testing
 DELETE FROM MembershipCatalog;
--- DELETE FROM Payment;
-
+DELETE FROM Payment;
 DELETE FROM Invoice;
 DELETE FROM Fine;
 DELETE FROM Loan;
@@ -62,10 +60,8 @@ BEGIN
 @@ LoanRecord.sql;
 @@ FineRecord.sql;
 @@ InvoiceRecord.sql;
--- WARN: Pending testing
 @@ MembershipCatalogRecord.sql;
-
--- @@ PaymentRecord.sql;
+@@ PaymentRecord.sql;
 END;
 /
 
