@@ -23,7 +23,7 @@ INNER JOIN StaffPerformanceReview r ON s.StaffID=r.StaffID
 GROUP BY t.ShiftTypeID, t.ShiftName, t.ShiftStartTime, t.ShiftEndTime
 ORDER BY t.Shiftname;
 
--- Create view  WARN: Pending testing
+-- Create view
 CREATE OR REPLACE VIEW staff_schedule_summary AS
 	SELECT t.ShiftTypeID, t.ShiftName, TO_CHAR(t.ShiftStartTime,'hh24:mi:ss') AS StartTime, TO_CHAR(t.ShiftEndTime,'hh24:mi:ss') AS EndTime, COUNT(sc.StaffID) AS NumOfStaff, ROUND(AVG(r.ReviewScore), 2) AS StaffAvgScore
 	FROM StaffShiftSchedule sc

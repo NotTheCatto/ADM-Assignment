@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Trigger 2: Validate status code of each updated book copies  WARN: Incomplete
+Boon Earn Iie - Trigger 2: Validate status code of each updated book copies
 */
 
 CREATE OR REPLACE TRIGGER TRG_VAL_STATUS

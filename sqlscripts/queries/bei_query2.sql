@@ -24,7 +24,7 @@ WHERE s.StatusName = 'Available'
 GROUP BY b.BookID, b.Title, l.LanguageName
 ORDER BY l.LanguageName, b.Title;
 
--- Create view  WARN: Pending testing
+-- Create view
 CREATE OR REPLACE VIEW available_books AS
 	SELECT b.BookID, b.Title, l.LanguageName AS Language, COUNT(c.BookCopyID) AS Qty, LISTAGG(c.BookCopyID, ', ') WITHIN GROUP (ORDER BY b.BookID, b.Title, l.LanguageName) "AVAILABLE_COPIES"
 	FROM Book b

@@ -11,3 +11,5 @@ CREATE TABLE StaffPerformanceReview(
   FOREIGN KEY (ReviewerID) REFERENCES Staff (StaffID),
   CHECK (ReviewerID <> StaffID)
 );
+
+CREATE INDEX idx_staffperformancereview_reviewscore ON StaffPerformanceReview(ReviewScore);

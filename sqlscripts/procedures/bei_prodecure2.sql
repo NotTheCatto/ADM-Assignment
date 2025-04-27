@@ -1,5 +1,5 @@
 /*
-Boon Earn Iie - Procedure 2: Record review of staffs' performance  WARN: Pending testing
+Boon Earn Iie - Procedure 2: Record review of staffs' performance
 */
 
 SET SERVEROUTPUT ON;
@@ -60,7 +60,7 @@ EXCEPTION
 		v_code := SQLCODE;
 		v_errMsg := SUBSTR(SQLERRM, 1, 64);
 		DBMS_OUTPUT.PUT_LINE('--- ERROR ---');
-		DBMS_OUTPUT.PUT_LINE('An exception has occured.');
+		DBMS_OUTPUT.PUT_LINE('An exception has occurred.');
 		DBMS_OUTPUT.PUT_LINE('Error code: ' || v_code);
 		DBMS_OUTPUT.PUT_LINE('Error message: ' || v_errmsg);
 		ROLLBACK;

@@ -11,3 +11,4 @@ CREATE TABLE StaffShiftSchedule(
   FOREIGN KEY (ShiftTypeID) REFERENCES ShiftType (ShiftTypeID)
 );
 
+CREATE INDEX idx_staffshiftschedule ON StaffShiftSchedule(StaffID, ShiftTypeID);

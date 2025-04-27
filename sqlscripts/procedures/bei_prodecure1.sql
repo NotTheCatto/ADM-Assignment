@@ -44,7 +44,7 @@ BEGIN
 		DBMS_OUTPUT.PUT_LINE('--- SUCCESS ---');
 		DBMS_OUTPUT.PUT_LINE('Borrower ID: ' || p_BorrowerID);
 		DBMS_OUTPUT.PUT_LINE('Book borrowed (ID): ' || p_BookCopyID);
-		DBMS_OUTPUT.PUT_LINE('Proccessed by Staff (ID): ' || p_StaffID);
+		DBMS_OUTPUT.PUT_LINE('Processed by Staff (ID): ' || p_StaffID);
 	ELSE
 		RAISE copy_not_available;
 	END IF;
